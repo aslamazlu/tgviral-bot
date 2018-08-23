@@ -34,7 +34,7 @@ def lyrics(bot: Bot, update: Update, args: List[  str]):
        else:
            lyricstext = LYRICSINFO % (song[ 0 ].replace(
 " " , "_" ), song[ 1 ].replace( " " , "_" ))
-            return update.effective_message.reply_text(lyrics + lyricstext, parse_mode = "MARKDOWN" )
+            return update.effective_message.reply_text(lyrics + lyricstext, parse_mode ="MARKDOWN" )
    else:
        return update.effective_message.reply_text( "Invalid syntax- try Artist - Title!" , failed= True)
 __help__ = """
