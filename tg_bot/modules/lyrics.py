@@ -2,8 +2,8 @@ from PyLyrics import *
 from telegram import Update, Bot
 from telegram.ext import run_async
 from typing import Optional, List
-from IHbot.modules.disable import DisableAbleCommandHandler
-from IHbot import dispatcher
+from tg_bot.modules.disable import DisableAbleCommandHandler
+from tg_bot import dispatcher
 from requests import get
 LYRICSINFO = "\n[Full Lyrics](http://lyrics.wikia.com/wiki/%s:%s)"
 @run_async
