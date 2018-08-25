@@ -35,7 +35,5 @@ def tts(bot: Bot, update: Update, args):
         tts.save("k.mp3")
     with open("k.mp3", "rb") as speech:
         update.message.reply_voice(speech, quote=False)
-         if message.reply_to_message:
-              message = message.reply_to_message
 
 dispatcher.add_handler(CommandHandler('tts', tts, pass_args=True))
