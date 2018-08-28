@@ -19,3 +19,4 @@ pynewtonmath
 bs4
 lxml
 wikipedia
+gsearch
