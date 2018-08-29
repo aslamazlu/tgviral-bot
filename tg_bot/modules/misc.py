@@ -323,7 +323,7 @@ def echo(bot: Bot, update: Update):
     
 def ping(bot: Bot, update: Update):
     start_time = time.time()
-    requests.get( ' https://api.telegram.org ')
+    bot.send_message(update.effective_chat.id, " Starting ping testing now! ")
     end_time = time.time()
     ping_time = float(end_time - start_time)*1000
     update.effective_message.reply_text(" Ping speed was : {}ms".format(ping_time))
