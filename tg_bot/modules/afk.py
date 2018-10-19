@@ -22,7 +22,7 @@ def afk(bot: Bot, update: Update):
         reason = ""
 
     sql.set_afk(update.effective_user.id, reason)
-    update.effective_message.reply_text("{} ഇപ്പോൾ offline ആണ്!".format(update.effective_user.first_name))
+    update.effective_message.reply_text("{} ഇപ്പോൾ Offline ആണ് !".format(update.effective_user.first_name))
 
 
 @run_async
@@ -34,7 +34,7 @@ def no_longer_afk(bot: Bot, update: Update):
 
     res = sql.rm_afk(user.id)
     if res:
-        update.effective_message.reply_text("{} Online വന്നിട്ടുണ്ട്!".format(update.effective_user.first_name))
+        update.effective_message.reply_text("{} ഇപ്പോൾ Online വന്നിട്ടുണ്ട്!".format(update.effective_user.first_name))
 
 
 @run_async
@@ -58,29 +58,37 @@ def reply_afk(bot: Bot, update: Update):
             else:
                 return
 
-            if sql.is_afk(user_id):
-                user = sql.check_afk_status(user_id)
-                if not user.reason:
-                    res = "{} ഇപ്പോൾ സ്ഥലത്തില്ല കാരണം !".format(fst_name)
-                else:
-                    res = "{} ഇപ്പോൾ സ്ഥലത്തില്ല.... കാരണം പറഞ്ഞിരിക്കുന്നത്.. :\n{}".format(fst_name, user.reason)
-                message.reply_text(res)
+            check_afk(bot, update, user_id, fst_name)
+
+    elif message.reply_to_message:
+        user_id = message.reply_to_message.from_user.id
+        fst_name = message.reply_to_message.from_user.first_name
+        check_afk(bot, update, user_id, fst_name)
+
+def check_afk(bot, update, user_id, fst_name):
+    if sql.is_afk(user_id):
+        user = sql.check_afk_status(user_id)
+        if not user.reason:
+            res = "{} ഇപ്പോൾ Offline ആണ് !".format(fst_name)
+        else:
+            res = "{} ഇപ്പോൾ Offline ആണ് ! കാരണം: \n{}".format(fst_name, user.reason)
+        update.effective_message.reply_text(res)
+
 
 
 __help__ = """
- - /afk <reason>: നിങ്ങൾ സ്ഥലത്തില്ല എന്നറിയിക്കാൻ...
- - brb <reason>: വല്യ മാറ്റം ഒന്നും ഇല്ല മേലെ പറഞ്ഞത് തന്നെ.....
+ - /afk <reason>: mark yourself as AFK.
+ - brb <reason>: same as the afk command - but not a command.
 
-AFK ഓൺ ആക്കി വെച്ചാൽ നിങ്ങളെ ആര് മെൻഷൻ ചെയ്താലും നിങ്ങ സ്ഥലത്തില്ലന്ന് പറയും......
+When marked as AFK, any mentions will be replied to with a message to say you're not available!
 """
 
-__mod_name__ = "കി.നീ.അ"
+__mod_name__ = "AFK"
 
 AFK_HANDLER = DisableAbleCommandHandler("afk", afk)
 AFK_REGEX_HANDLER = DisableAbleRegexHandler("(?i)brb", afk, friendly="afk")
-NO_AFK_HANDLER = MessageHandler(Filters.all & Filters.group, no_longer_afk)
-AFK_REPLY_HANDLER = MessageHandler(Filters.entity(MessageEntity.MENTION) | Filters.entity(MessageEntity.TEXT_MENTION),
-                                   reply_afk)
+NO_AFK_HANDLER = MessageHandler(Filters.all & Filters.group , no_longer_afk)
+AFK_REPLY_HANDLER = MessageHandler(Filters.all & Filters.group , reply_afk)
 
 dispatcher.add_handler(AFK_HANDLER, AFK_GROUP)
 dispatcher.add_handler(AFK_REGEX_HANDLER, AFK_GROUP)
