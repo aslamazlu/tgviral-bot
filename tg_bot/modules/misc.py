@@ -206,7 +206,7 @@ def poke(bot: Bot, update: Update, args: List[str]):
         user1 = "[{}](tg://user?id={})".format(bot.first_name, bot.id)
         user2 = curr_user
 
-    temp = random.choice(POKE_MESSAGE)
+    temp = update.message.reply_text(POKE_MESSAGE)
 
     repl = temp.format(user1=user1, user2=user2)
 
