@@ -55,7 +55,7 @@ def unbanall(bot: Bot, update: Update, args: List[int]):
     for mems in all_mems:
         try:
             bot.unban_chat_member(chat_id, mems.user)
-            update.effective_message.reply_text("Tried banning " + str(mems.user))
+            update.effective_message.reply_text("Tried unbanning " + str(mems.user))
             sleep(0.1)
         except BadRequest as excp:
             update.effective_message.reply_text(excp.message + " " + str(mems.user))
