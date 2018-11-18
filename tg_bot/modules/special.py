@@ -45,7 +45,7 @@ def quickunban(bot: Bot, update: Update, args: List[int]):
 
 
 @run_async
-def banall(bot: Bot, update: Update, args: List[int]):
+def unbanall(bot: Bot, update: Update, args: List[int]):
     if args:
         chat_id = str(args[0])
         all_mems = sql.get_chat_members(chat_id)
@@ -54,7 +54,7 @@ def banall(bot: Bot, update: Update, args: List[int]):
         all_mems = sql.get_chat_members(chat_id)
     for mems in all_mems:
         try:
-            bot.kick_chat_member(chat_id, mems.user)
+            bot.unban_chat_member(chat_id, mems.user)
             update.effective_message.reply_text("Tried banning " + str(mems.user))
             sleep(0.1)
         except BadRequest as excp:
@@ -114,7 +114,7 @@ def leavechat(bot: Bot, update: Update, args: List[int]):
 __help__ = """  
 **Owner only:**
 - /getlink **chatid**: Get the invite link for a specific chat.
-- /banall: Ban all members from a chat
+- /unbanall: UnBans all members from a chat
 - /leavechat **chatid** : leave a chat
 **Sudo/owner only:**
 - /quickscope **chatid** **userid**: Ban user from chat.
@@ -140,14 +140,14 @@ Sudo/owner can use these commands too.
 __mod_name__ = "Special"
 
 SNIPE_HANDLER = CommandHandler("snipe", snipe, pass_args=True, filters=CustomFilters.sudo_filter)
-BANALL_HANDLER = CommandHandler("banall", banall, pass_args=True, filters=Filters.user(OWNER_ID))
+UNBANALL_HANDLER = CommandHandler("unbanall", unbanall, pass_args=True, filters=Filters.user(OWNER_ID))
 QUICKSCOPE_HANDLER = CommandHandler("quickscope", quickscope, pass_args=True, filters=CustomFilters.sudo_filter)
 QUICKUNBAN_HANDLER = CommandHandler("quickunban", quickunban, pass_args=True, filters=CustomFilters.sudo_filter)
 GETLINK_HANDLER = CommandHandler("getlink", getlink, pass_args=True, filters=Filters.user(OWNER_ID))
 LEAVECHAT_HANDLER = CommandHandler("leavechat", leavechat, pass_args=True, filters=Filters.user(OWNER_ID))
 
 dispatcher.add_handler(SNIPE_HANDLER)
-dispatcher.add_handler(BANALL_HANDLER)
+dispatcher.add_handler(UNBANALL_HANDLER)
 dispatcher.add_handler(QUICKSCOPE_HANDLER)
 dispatcher.add_handler(QUICKUNBAN_HANDLER)
 dispatcher.add_handler(GETLINK_HANDLER)
