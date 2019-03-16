@@ -19,9 +19,8 @@ from tg_bot.modules.helper_funcs.misc import paginate_modules
 
 PM_START_TEXT = """
 
-വരണം... വരണം.. {}, ഞാൻ {}! ഈ  [മഹാമനസ്കൻ](tg://user?id={}) ആണ് എന്നെ വെളിച്ചം കാണിച്ചത്... അതുകൊണ്ട് ആ നന്ദി അദ്ദേഹത്തോട് എപ്പോഴും വേണം എന്ന് താഴ്മയായി അപേക്ഷിച്ചുകൊള്ളുന്നു.....
+വരണം... വരണം.. {}, ഞാൻ {}! ഈ  [മഹാമനസ്കൻ](tg://user?id={}) ആണ് എന്നെ വെളിച്ചം കാണിച്ചത്... 
 
-എന്നെ നിർമ്മിച്ചിരിക്കുന്നത് python3 യിൽ python-telegram-bot ലൈബ്രറി ഉപയോഗിച്ചാണ്. ഞാൻ പൂർണ്ണമായിട്ടും ഓപ്പൺസോഴ്സ്ഡ് ആണ്. 
 
 എന്റെ അപ്ഡേറ്റുകളെക്കുറിച്ചും പ്രവർത്തനത്തെപറ്റിയും അറിയുവാൻ [ഈ ഗ്രൂപ്പിൽ](t.me/tgviral) വന്നാൽ മതിയാകും... 
 
@@ -366,7 +365,7 @@ def donate(bot: Bot, update: Update):
     if chat.type == "private":
         update.effective_message.reply_text(DONATE_STRING, parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True)
 
-        if OWNER_ID != 254318997 and DONATION_LINK:
+        if OWNER_ID != 116951861 and DONATION_LINK:
             update.effective_message.reply_text("You can also donate to the person currently running me "
                                                 "[here]({})".format(DONATION_LINK),
                                                 parse_mode=ParseMode.MARKDOWN)
