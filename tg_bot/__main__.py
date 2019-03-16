@@ -44,7 +44,7 @@ HELP_STRINGS = """
 And the following:
 """.format(dispatcher.bot.first_name, "" if not ALLOW_EXCL else "മേൽപ്പറഞ്ഞ സാധനങ്ങൾ എല്ലാം / അല്ലെങ്കിൽ ! വെച്ച് ഉപയോഗിക്കാവുന്നതാണ്..... \n")
 
-DONATE_STRING = """നന്ദി ഉണ്ട് കുട്ടി ഈ കാലത്ത് വെറുതെ ഒരാൾ 25000 രൂപ ഒക്കെ തരുവാണെന്ന് പറഞ്ഞാൽ.... എന്തായാലും കൊണ്ടുവന്നതല്ലേ [ഇവിടെ ഇട്ടോ](t.me/aslamazlu) ."""
+DONATE_STRING = """നന്ദി ഉണ്ട് എത്ര രൂപ ആയാലും കൊണ്ടുവന്നതല്ലേ [ഇവിടെ ഇട്ടോ](t.me/aslamazlu) ."""
 
 IMPORTED = {}
 MIGRATEABLE = []
