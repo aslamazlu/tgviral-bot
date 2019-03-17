@@ -59,9 +59,9 @@ def ban(bot: Bot, update: Update, args: List[str]) -> str:
 
     try:
         chat.kick_member(user_id)
-        bot.send_sticker(chat.id, BAN_STICKER)  # banhammer marie sticker
+        bot.send_sticker(chat.id, BAN_STICKER) (CAADBQADwQADNYv4BuRfDcNClPwNAg) # tgviral sticker
         keyboard = []
-        reply = "{} ന് ബണ്ണ് കൊടുത്തു വിട്ടിട്ടുണ്ട് !".format(mention_html(member.user.id, member.user.first_name))
+        reply = "{} ബാൻ ചെയ്തു  !".format(mention_html(member.user.id, member.user.first_name))
         message.reply_text(reply, reply_markup=keyboard, parse_mode=ParseMode.HTML)
         return log
 
@@ -140,7 +140,7 @@ def temp_ban(bot: Bot, update: Update, args: List[str]) -> str:
 
     try:
         chat.kick_member(user_id, until_date=bantime)
-        bot.send_sticker(chat.id, BAN_STICKER)  # banhammer marie sticker
+        bot.send_sticker(chat.id, BAN_STICKER)  # tgviral sticker
         message.reply_text("Banned! User will be banned for {}.".format(time_val))
         return log
 
@@ -183,7 +183,7 @@ def kick(bot: Bot, update: Update, args: List[str]) -> str:
             raise
 
     if is_user_ban_protected(chat, user_id):
-        message.reply_text("പുള്ളി അഡ്മിനാണ്, എനിക്ക് പുറത്താക്കാൻ പറ്റില്ല 😕")
+        message.reply_text("അദ്ദേഹം അഡ്മിനാണ്, എനിക്ക് പുറത്താക്കാൻ പറ്റില്ല 😕")
         return ""
 
     if user_id == bot.id:
@@ -192,8 +192,8 @@ def kick(bot: Bot, update: Update, args: List[str]) -> str:
 
     res = chat.unban_member(user_id)  # unban on current user = kick
     if res:
-        bot.send_sticker(chat.id, BAN_STICKER)  # banhammer marie sticker
-        message.reply_text("ലവനെ എടുത്തു വെളിയിൽ കളഞ്ഞു 😎")
+        bot.send_sticker(chat.id, BAN_STICKER) 'CAADBQADQAADNYv4BkSsNfolMDGtAg' # tgviral sticker
+        message.reply_text("ഇവനെ താൽകാലികമായി പുറത്താക്കി")
         log = "<b>{}:</b>" \
               "\n#KICKED" \
               "\n<b>Admin:</b> {}" \
@@ -334,7 +334,7 @@ def rban(bot: Bot, update: Update, args: List[str]):
             raise
 
     if is_user_ban_protected(chat, user_id, member):
-        message.reply_text("അഡ്മിന് കൊടുക്കാനുള്ള ബണ്ണ് എന്റേൽ ഇല്ലല്ലോ 😕")
+        message.reply_text("എന്റെ ഗുരുക്കളെ ബാൻ ചെയ്യാൻ എനിക്ക് സാതിക്കില്ല")
         return ""
 
     if user_id == bot.id:
